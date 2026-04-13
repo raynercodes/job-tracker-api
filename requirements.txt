@@ -1,0 +1,77 @@
+                        TABLES:
+
+Users:
+id
+password_hash
+username
+created_at
+
+Companies:
+id
+user_id
+company_name
+created_at
+
+Applications:
+id
+company_id
+user_id
+notes
+job_title
+applied_at
+status
+created_at
+
+Refresh_Tokens:
+id
+user_id
+token
+created_at
+revoked_at
+
+Background_Jobs:
+user_id
+job_type
+priority
+result
+error_message
+started_at
+finished_at
+job_id
+created_at
+application_id
+status
+
+
+
+
+
+
+                        ROUTES:
+POST /register
+POST /login
+POST /refresh
+POST /applications
+GET /applications
+GET /applications/ <id>
+PATCH /applications/ <id>
+DELETE /applications/ <id>
+POST /companies
+GET /companies
+GET /companies/ <id>
+GET /reports
+POST /reports
+GET /reports <job_id>
+
+
+
+
+
+
+                        STATUS SYSTEM
+
+applied
+reviewing
+interview
+offer
+rejected

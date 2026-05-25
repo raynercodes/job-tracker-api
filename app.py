@@ -15,6 +15,21 @@ app.register_blueprint(applications_bp)
 def log_request():
     logger.info(f"Request started method={request.method} path={request.path}")
 
+@app.route("/", methods=["GET"])
+def home():
+    return {
+        "name": "Job Tracker API",
+        "features": [
+            "JWT auth",
+            "Company and application management",
+            "SQLite database",
+            "Flask framework",
+        ],
+        "github": "https://github.com/raynercodes/job-tracker-api.git",
+        "message": "Job Tracker API is running check Github README for endpoints.",
+        "status": "running"
+    }
+
 @app.errorhandler(ValueError)
 def handle_value_error(e):
     logger.warning(f"ValueError path={request.path} error={str(e)}")

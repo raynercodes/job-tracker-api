@@ -1,19 +1,19 @@
-from config import ACCESS_TOKEN_EXPIRE_MINUTES, SECRET_KEY
 import secrets
 import jwt
 from datetime import datetime, UTC, timedelta
 from flask import request, g
 from functools import wraps
+from config import Config
 
 def create_access_token(user_id):
-    expiration = datetime.now(UTC) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    expiration = datetime.now(UTC) + timedelta(minutes=Config.ACCESS_TOKEN_EXPIRE_MINUTES)
 
     payload = {
         "user_id": user_id,
         "exp": expiration
     }
 
-    token = jwt.encode(payload, SECRET_KEY, algorithm="HS256")
+    token = jwt.encode(payload, Config.SECRET_KEY, algorithm="HS256")
 
     return token
 
@@ -37,7 +37,7 @@ def require_access_token(f):
             raise ValueError("Missing access token")
         
         try: 
-            payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+            payload = jwt.decode(token, Config.SECRET_KEY, algorithms=["HS256"])
         except jwt.ExpiredSignatureError:
             raise ValueError("Access token expired")
         except jwt.InvalidTokenError:

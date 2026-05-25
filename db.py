@@ -1,6 +1,6 @@
 import sqlite3
-from config import DB_PATH
+from config import Config
 
 
 def get_db():
-    return sqlite3.connect(DB_PATH)
+    return sqlite3.connect(Config.DB_PATH)

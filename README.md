@@ -76,6 +76,5 @@ Key Concepts Demonstrated:
 Future Improvements:
 - Add pagination to list endpoints
 - Add update/delete routes for companies
-- Move configuration secrets into environment variables
 - Expand logging with request duration and status code
 - Add automated tests
